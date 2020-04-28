@@ -1,0 +1,6 @@
+ignore:
+  - .editorconfig
+  - .gitignore
+  - .github
+  - README.md
+  - LICENSE

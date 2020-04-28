@@ -1,0 +1,8 @@
+## Interface: 80300
+## Title: AdiBags: ItemBonus |cff69ccf0Core|r
+## Notes: Filter items which have bonus affixes (such as speed, leech, etc).
+## Author: PrivateSniper
+## Version: 1.0.0
+## Dependencies: AdiBags
+
+main.lua
