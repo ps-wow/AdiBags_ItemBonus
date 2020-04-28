@@ -41,8 +41,16 @@ function ItemBonus:Dump(str, obj)
 end
 
 function ItemBonus:DefaultFilter(slotData, module)
-    local speedMod = "ITEM_MOD_CR_SPEED_SHORT"
-    local leechMod = "ITEM_MOD_CR_LEECH_SHORT" -- TODO: Check if this works.
+    local speedMod          = "ITEM_MOD_CR_SPEED_SHORT"
+    local leechMod          = "ITEM_MOD_CR_LEECH_SHORT" -- TODO: Check if this works.
+    local hasteMod          = "ITEM_MOD_HASTE_RATING_SHORT"
+    local intMod            = "ITEM_MOD_INTELLECT_SHORT"
+    local masteryMod        = "ITEM_MOD_MASTERY_RATING_SHORT"
+    local versatilityMod    = "ITEM_MOD_VERSATILITY"
+    local staminaMod        = "ITEM_MOD_STAMINA_SHORT"
+    local socketMod         = "EMPTY_SOCKET_PRISMATIC"
+    local indestructableMod = "ITEM_MOD_CR_STURDINESS_SHORT"
+
     local itemStats = GetItemStats(slotData.link)
 
     if (itemStats ~= nil) then
@@ -55,11 +63,22 @@ function ItemBonus:DefaultFilter(slotData, module)
             return 'Speed'
         end
 
-        -- Technically an item could have multiple stats, but for now lets do first come first served
+        if (itemStats[socketMod] ~= nil) then
+            return 'Socket'
+        end
 
-        ItemBonus:Dump('stats', stats)
+        if (itemStats[indestructableMod] ~= nil) then
+            return 'Indestructable'
+        end
+
+        -- Technically an item could have multiple stats, but for now lets do first come first served
     -- TODO: If Item has bonus id, add to relevent filter
     end
+
+    -- DEBUG, dump out specific item id's
+    -- if (tonumber(slotData.itemId) == 113661) then
+    --     ItemBonus:Dump('itemstats', itemStats)
+    -- end
 end
 
 local module = {
